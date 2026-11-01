@@ -8,6 +8,6 @@
     # The flavor of Godot downloaded.
     godot-flavor: # optional, default is stable
     # The name of the Xcode project and generated IPA.
-    export-name: sobosuba # optional, default is my-ios-project
+    export-name: # optional, default is my-ios-project
     # The configuration of both the godot export and xcode build. Can be release|debug.
     configuration: # optional, default is release
