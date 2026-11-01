@@ -2,11 +2,6 @@ name: Build iOS App
 
 on:
   workflow_dispatch:
-    inputs:
-      dropbox_link:
-        description: 'Download link for the Xcode project zip'
-        required: true
-        default: ''
 
 jobs:
   build:
@@ -19,8 +14,7 @@ jobs:
       - name: Run Godot Unsigned iOS Builder
         uses: gamekiller2048/Godot-Unsigned-IOS@v2.0.1
         with:
-          godot-version: '4.3' # Change to your Godot version if needed (e.g., 4.2.1, 4.3, etc.)
+          godot-version: '4.3'        # Match your Godot version
           godot-flavor: 'stable'
-          export-name: 'sobosuba'
+          export-name: 'sobosuba'     # Match your project export name
           configuration: 'release'
-          dropbox-link: ${{ github.event.inputs.dropbox_link }}
