@@ -1,13 +1,26 @@
-- name: Godot-Unsigned-IOS
-  # You may pin to the exact commit or the version.
-  # uses: gamekiller2048/Godot-Unsigned-IOS@f6de848b8b57d799fde69d2d40eea24c9a490c44
-  uses: gamekiller2048/Godot-Unsigned-IOS@v2.0.1
-  with:
-    # The version of Godot downloaded.
-    godot-version: # optional, default is 4.7.1
-    # The flavor of Godot downloaded.
-    godot-flavor: # optional, default is stable
-    # The name of the Xcode project and generated IPA.
-    export-name: # optional, default is my-ios-project
-    # The configuration of both the godot export and xcode build. Can be release|debug.
-    configuration: # optional, default is release
+name: Build iOS App
+
+on:
+  workflow_dispatch:
+    inputs:
+      dropbox_link:
+        description: 'Download link for the Xcode project zip'
+        required: true
+        default: ''
+
+jobs:
+  build:
+    runs-on: macos-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run Godot Unsigned iOS Builder
+        uses: gamekiller2048/Godot-Unsigned-IOS@v2.0.1
+        with:
+          godot-version: '4.3' # Change to your Godot version if needed (e.g., 4.2.1, 4.3, etc.)
+          godot-flavor: 'stable'
+          export-name: 'sobosuba'
+          configuration: 'release'
+          dropbox-link: ${{ github.event.inputs.dropbox_link }}
